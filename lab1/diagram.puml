@@ -1,0 +1,27 @@
+@startuml Lab_Matrix
+
+' === НАСТРОЙКИ ДЛЯ ГОСТ / СТП ===
+skinparam monochrome true              
+skinparam shadowing false             
+skinparam classAttributeIconSize 0     
+skinparam defaultFontName Times New Roman 
+skinparam defaultFontSize 14          
+skinparam class {
+    BackgroundColor White              
+    BorderColor Black                 
+}
+' ===================================
+
+class Matrix {
+    - rows: int
+    - cols: int
+    - data: int**
+    
+    + Matrix(r: int, c: int)
+    + ~Matrix()
+    + input(): void
+    + print() const: void
+    + multiply(other: const Matrix&) const: Matrix*
+}
+
+@enduml

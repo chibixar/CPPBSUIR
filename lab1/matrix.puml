@@ -1,0 +1,27 @@
+@startuml
+' === НАСТРОЙКИ ДЛЯ ГОСТ / СТП ===
+skinparam monochrome true             ' Черно-белый режим
+skinparam shadowing false             ' Убираем тени
+skinparam classAttributeIconSize 0    ' Заменяем иконки на знаки +, -, #
+skinparam defaultFontName Times New Roman ' Гостовский шрифт
+skinparam defaultFontSize 14          ' Размер шрифта
+skinparam class {
+    BackgroundColor White             ' Белый фон классов
+    BorderColor Black                 ' Черные рамки
+    ArrowColor Black                  ' Черные стрелки
+}
+skinparam linetype ortho              ' Строгие прямые углы для связей (если будут)
+' ===================================
+
+class Matrix {
+    - rows : int
+    - cols : int
+    - data : int**
+    --
+    + Matrix(r : int, c : int)
+    + ~Matrix()
+    + input() : void
+    + print() const : void
+    + multiply(other : const Matrix&) const : Matrix*
+}
+@enduml
