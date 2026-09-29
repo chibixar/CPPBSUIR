@@ -1,0 +1,51 @@
+@startuml
+' Налады для адпаведнасці патрабаванням ДАСТ (ГОСТ) да справаздач
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam dpi 300
+
+class MyString {
+    ' Схаваныя палі (private)
+    - data : char*
+    - length : size_t
+    - {static} MAX_INPUT : const int
+
+    ' Адкрытыя метады (public)
+    --
+    + MyString()
+    + MyString(str : const char*)
+    + MyString(other : const MyString&)
+    + ~MyString()
+    
+    + operator=(other : const MyString&) : MyString&
+    + operator+=(other : const MyString&) : MyString&
+    
+    + operator++() : MyString&
+    + operator++(int) : MyString
+    + operator--() : MyString&
+    + operator--(int) : MyString
+    
+    + operator[](index : int) : char&
+    + operator()(start : int, len : int) : MyString
+
+    ' Глабальныя сяброўскія функцыі (перагрузкі аператараў)
+    .. Сяброўскія (Friend) функцыі ..
+    + <<friend>> operator+(lhs : const MyString&, rhs : const MyString&) : MyString
+    + <<friend>> operator+(lhs : const char*, rhs : const MyString&) : MyString
+    + <<friend>> operator+(lhs : const MyString&, rhs : const char*) : MyString
+    
+    + <<friend>> operator-(lhs : const MyString&, rhs : const MyString&) : MyString
+    
+    + <<friend>> operator<(lhs : const MyString&, rhs : const MyString&) : bool
+    + <<friend>> operator>(lhs : const MyString&, rhs : const MyString&) : bool
+    + <<friend>> operator<=(lhs : const MyString&, rhs : const MyString&) : bool
+    + <<friend>> operator>=(lhs : const MyString&, rhs : const MyString&) : bool
+    
+    + <<friend>> operator<<(os : ostream&, str : const MyString&) : ostream&
+    + <<friend>> operator>>(is : istream&, str : MyString&) : istream&
+}
+
+
+
+@enduml
