@@ -11,7 +11,7 @@ int main()
     
     do
     {
-        std::cout << "\n========================================\n";
+        std::cout << "\nMENU:\n";
         std::cout << "Current Strings:\n";
         std::cout << "A = " << A << "\n";
         std::cout << "B = " << B << "\n";
