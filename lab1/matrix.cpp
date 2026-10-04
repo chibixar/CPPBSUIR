@@ -1,51 +1,87 @@
-#include "matrix.h"                                             // Падключэнне загаловачнага файла матрыцы.
-#include <iostream>                                             // Падключэнне бібліятэкі ўводу і вываду.
+#include "matrix.h"
+#include <iostream>
 
-Matrix::Matrix(int r, int c)                                    // Рэалізацыя канструктара з параметрамі.
-    : rows(r), cols(c), data(r, std::vector<int>(c, 0))         // Ініцыялізацыя памераў і запаўненне нулямі.
+Matrix::Matrix(int r, int c)
+    : rows(r), cols(c)
 {
-}
+    data = new int*[rows];
 
-void Matrix::input()                                            // Рэалізацыя метаду ўводу элементаў масіва.
-{
-    for (int i = 0; i < rows; i++)                              // Вонкавы цыкл па ўсіх радках матрыцы.
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < cols; j++)                          // Унутраны цыкл па ўсіх слупках матрыцы.
+        data[i] = new int[cols];
+
+        for (int j = 0; j < cols; j++)
         {
-            std::cin >> data[i][j];                             // Зчытванне значэння элемента з клавіятуры.
+            data[i][j] = 0;
         }
     }
 }
 
-void Matrix::print() const                                      // Рэалізацыя метаду вываду элементаў масіва.
+Matrix::Matrix(const Matrix& other)
+    : rows(other.rows), cols(other.cols)
 {
-    for (int i = 0; i < rows; i++)                              // Вонкавы цыкл па ўсіх радках матрыцы.
-    {
-        for (int j = 0; j < cols; j++)                          // Унутраны цыкл па ўсіх слупках матрыцы.
-        {
-            std::cout << data[i][j] << " ";                     // Вывад значэння элемента на экран.
-        }
+    data = new int*[rows];                                      // Уласная памяць для копіі, не агульная з other.
 
-        std::cout << "\n";                                      // Пераход на новы радок пасля кожнага радка.
+    for (int i = 0; i < rows; i++)
+    {
+        data[i] = new int[cols];
+
+        for (int j = 0; j < cols; j++)
+        {
+            data[i][j] = other.data[i][j];
+        }
     }
 }
 
-Matrix Matrix::multiply(const Matrix other) const               // Рэалізацыя метаду множання дзвюх матрыц.
+Matrix::~Matrix()
 {
-    Matrix result(rows, other.cols);                            // Стварэнне новай матрыцы для захавання выніку.
-
-    for (int i = 0; i < rows; i++)                              // Цыкл па радках першай пачатковай матрыцы.
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < other.cols; j++)                    // Цыкл па слупках другой пачатковай матрыцы.
-        {
-            result.data[i][j] = 0;                              // Пачатковае абнуленне бягучага элемента выніку.
+        delete[] data[i];
+    }
 
-            for (int k = 0; k < cols; k++)                      // Цыкл для падліку сумы здабыткаў элементаў.
+    delete[] data;
+}
+
+void Matrix::input()
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            std::cin >> data[i][j];
+        }
+    }
+}
+
+void Matrix::print() const
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            std::cout << data[i][j] << " ";
+        }
+
+        std::cout << "\n";
+    }
+}
+
+
+void Matrix::multiply(const Matrix& other, Matrix& result) const  //Вяртае для copy.multiply(m2, result).print();
+{
+    for (int i = 0; i < this->rows; i++)
+    {
+        for (int j = 0; j < other.cols; j++)
+        {
+            result.data[i][j] = 0;
+
+            for (int k = 0; k < this->cols; k++)
             {
-                result.data[i][j] += data[i][k] * other.data[k][j]; // Вылічэнне элемента новай матрыцы.
+                result.data[i][j] += this->data[i][k] * other.data[k][j];
             }
         }
     }
 
-    return result;                                              // Вяртанне выніковай матрыцы па значэнні.
+    return result;                                              // Спасылка на параметр, а не на лакальны аб'ект.
 }

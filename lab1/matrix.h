@@ -1,29 +1,28 @@
 /*Реализовать следующие методы:
-1. конструктор с параметрами 
+1. конструктор с параметрами
 2. деструктор
 3. метод ввода данных в массив
 4. вывод массива на экран
 5. реализовать метод уножение двухмерных массивов
 */
 
-#ifndef MATRIX_H                                                // Абарона ад паўторнага ўключэння файла.
-#define MATRIX_H                                                // Макрас для абароны загаловачнага файла.
+#pragma once
 
-#include <vector>                                               // Падключэнне бібліятэкі вектараў.
-
-class Matrix                                                    // Аб'яўленне класа для працы з матрыцамі.
+class Matrix
 {
-private:                                                        // Схаваныя палі і дадзеныя класа.
-    int rows;                                                   // Колькасць радкоў у матрыцы.
-    int cols;                                                   // Колькасць слупкоў у матрыцы.
-    std::vector<std::vector<int>> data;                         // Двухмерны вектар дадзеных.
+private:
+    int rows;
+    int cols;
+    int** data;
 
-public:                                                         // Адкрытыя метады і функцыі класа.
-    Matrix(int r, int c);                                       // Канструктар з параметрамі для стварэння.
+public:
+    Matrix(int r, int c);
+    Matrix(const Matrix& other);                                // Глыбокая копія.
+    ~Matrix();
 
-    void input();                                               // Метад для ўводу дадзеных у масіў.
-    void print() const;                                         // Метад для вываду масіва на экран.
-    Matrix multiply(const Matrix other) const;                  // Метад для множання дзвюх матрыц.
+    void input();
+    void print() const;
+    void multiply(const Matrix& other, Matrix& result) const; // Вяртае спасылку на result.
 };
 
-#endif                                                          // Канец абароны загаловачнага файла.
+#endif

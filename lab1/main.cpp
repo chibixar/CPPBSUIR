@@ -1,53 +1,54 @@
-#include "matrix.h"                                             // Падключэнне загаловачнага файла матрыцы.
-#include <iostream>                                             // Падключэнне бібліятэкі ўводу і вываду.
+#include "matrix.h"
+#include <iostream>
 
-int main()                                                      // Галоўная функцыя выканання праграмы.
+int main()
 {
-    char choice;                                                // Зменная для захавання выбару карыстальніка.
-    
-    do                                                          // Пачатак цыкла для паўтарэння праграмы.
+    char choice;
+
+    do
     {
-        int r1, c1, r2, c2;                                     // Зменныя для захавання памераў дзвюх матрыц.
-        
-        std::cout << "Enter rows and cols for Matrix 1: ";      // Запыт памераў першай матрыцы на экране.
-        std::cin >> r1 >> c1;                                   // Увод колькасці радкоў і слупкоў першай.
-        
-        std::cout << "Enter rows and cols for Matrix 2: ";      // Запыт памераў другой матрыцы на экране.
-        std::cin >> r2 >> c2;                                   // Увод колькасці радкоў і слупкоў другой.
-        
-        if (c1 != r2)                                           // Праверка магчымасці матэматычнага множання.
+        int r1, c1, r2, c2;
+
+        std::cout << "Enter rows and cols for Matrix 1: ";
+        std::cin >> r1 >> c1;
+
+        std::cout << "Enter rows and cols for Matrix 2: ";
+        std::cin >> r2 >> c2;
+
+        if (c1 != r2)                                           // Множанне магчыма, толькі калі c1 == r2.
         {
-            std::cout << "Error: Matrices cannot be multiplied.\n"; // Паведамленне пра памылку памераў матрыц.
+            std::cout << "Error: Matrices cannot be multiplied.\n";
         }
-        else                                                    // Калі памеры падыходзяць для множання.
+        else
         {
-            Matrix m1(r1, c1);                                  // Стварэнне першага аб'екта матрыцы ў памяці.
-            Matrix m2(r2, c2);                                  // Стварэнне другога аб'екта матрыцы ў памяці.
-            
-            std::cout << "Enter elements for Matrix 1:\n";      // Запыт уводу значэнняў для першай матрыцы.
-            m1.input();                                         // Выклік метаду ўводу для першай матрыцы.
-            
-            std::cout << "Enter elements for Matrix 2:\n";      // Запыт уводу значэнняў для другой матрыцы.
-            m2.input();                                         // Выклік метаду ўводу для другой матрыцы.
-            
-            std::cout << "\nFirst Matrix:\n";                   // Тэкставае паведамленне перад вывадам першай.
-            m1.print();                                         // Выклік метаду вываду для першай матрыцы.
-            
-            std::cout << "\nSecond Matrix:\n";                  // Тэкставае паведамленне перад вывадам другой.
-            m2.print();                                         // Выклік метаду вываду для другой матрыцы.
-            
-            Matrix result = m1.multiply(m2);                    // Выклік метаду множання і захаванне выніку.
-            
-            std::cout << "\nMultiplication Result:\n";          // Тэкставае паведамленне перад вывадам выніку.
-            result.print();                                     // Выклік метаду вываду для выніковай матрыцы.
-            
+            Matrix m1(r1, c1);
+            Matrix m2(r2, c2);
+
+            std::cout << "Enter elements for Matrix 1:\n";
+            m1.input();
+
+            std::cout << "Enter elements for Matrix 2:\n";
+            m2.input();
+
+            std::cout << "\nFirst Matrix:\n";
+            m1.print();
+
+            std::cout << "\nSecond Matrix:\n";
+            m2.print();
+
+            Matrix copy(m1);                                    // Праверка канструктара капіявання.
+            Matrix result(r1, c2);                              // Памер выніку: r1 x c2.
+            co  py.multiply(m2, result);
+
+            std::cout << "\nMultiplication Result:\n";
+            result.print();
         }
-        
-        std::cout << "\nContinue? (y/n): ";                     // Запыт карыстальніка на працяг працы праграмы.
-        std::cin >> choice;                                     // Зчытванне сімвала выбару карыстальніка.
-        std::cout << "\n";                                      // Даданне пустога радка для прыгажосці вываду.
-        
-    } while (choice == 'y' || choice == 'Y');                   // Умова працягу выканання галоўнага цыкла.
-    
-    return 0;                                                   // Паспяховае завяршэнне працы ўсёй праграмы.
+
+        std::cout << "\nContinue? (y/n): ";
+        std::cin >> choice;
+        std::cout << "\n";
+
+    } while (choice == 'y' || choice == 'Y');
+
+    return 0;
 }
