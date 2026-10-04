@@ -38,7 +38,7 @@ int main()
 
             Matrix copy(m1);                                    // Праверка канструктара капіявання.
             Matrix result(r1, c2);                              // Памер выніку: r1 x c2.
-            co  py.multiply(m2, result);
+            copy.multiply(m2, result);
 
             std::cout << "\nMultiplication Result:\n";
             result.print();
