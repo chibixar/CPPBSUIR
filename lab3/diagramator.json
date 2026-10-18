@@ -28,7 +28,14 @@
       "edge": "#000000",
       "badge": "#add1b2"
     },
-    "orthogonalEdges": false,
+    "orthogonalEdges": true,
+    "edgeMergeTargets": true,
+    "edgeEditable": false,
+    "edgeClearance": 12.0,
+    "edgePortSpacing": 20.0,
+    "edgeBendPenalty": 24.0,
+    "edgeSourceSide": "top",
+    "edgeTargetSide": "bottom",
     "edgeWidth": 1.0,
     "arrowSize": 12.0,
     "edgeDashLength": 6.0,
@@ -42,12 +49,12 @@
   },
   "positions": {
     "classFakultet": {
-      "x": 134.2716152468608,
-      "y": 867.7410039480649
+      "x": 0.0,
+      "y": 125.17763891898504
     },
     "classStudent": {
-      "x": 0.0,
-      "y": 264.0
+      "x": -136.63057709021143,
+      "y": 334.09742650715197
     }
   },
   "collapsed": {
@@ -60,5 +67,10 @@
       "methods": false
     }
   },
+  "hidden": {
+    "classFakultet": false,
+    "classStudent": false
+  },
+  "connections": [],
   "notes": []
 }
