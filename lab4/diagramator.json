@@ -29,8 +29,8 @@
       "badge": "#add1b2"
     },
     "orthogonalEdges": true,
-    "edgeMergeTargets": true,
-    "edgeEditable": false,
+    "edgeMergeTargets": false,
+    "edgeEditable": true,
     "edgeClearance": 12.0,
     "edgePortSpacing": 20.0,
     "edgeBendPenalty": 24.0,
@@ -40,7 +40,7 @@
     "arrowSize": 12.0,
     "edgeDashLength": 6.0,
     "edgeDashGap": 4.0,
-    "interfaceHidesAttributes": true,
+    "interfaceHidesAttributes": false,
     "showStereotype": true,
     "templateNotation": "corner",
     "memberIconStyle": "text",
@@ -49,20 +49,20 @@
   },
   "positions": {
     "classBinaryTree": {
-      "x": -455.7123858041625,
-      "y": 272.47139151227907
+      "x": 623.5990478957169,
+      "y": 670.1507653125045
     },
     "classFakultet": {
-      "x": 107.31582678461916,
-      "y": 74.71870897030558
+      "x": 115.7702175057785,
+      "y": 1007.4839776769212
     },
     "classStudent": {
-      "x": -29.455332011353875,
-      "y": 454.6447776488994
+      "x": 0.0,
+      "y": 498.0
     },
     "structBinaryTree_1_1Node": {
-      "x": -335.2814071436869,
-      "y": 67.5647574980956
+      "x": 754.4611672698102,
+      "y": 476.18527607588953
     }
   },
   "collapsed": {
@@ -89,6 +89,22 @@
     "classStudent": false,
     "structBinaryTree_1_1Node": false
   },
-  "connections": [],
+  "connections": [
+    {
+      "source": "classStudent",
+      "target": "classFakultet",
+      "type": "inheritance",
+      "anchors": {
+        "source": {
+          "side": "bottom",
+          "offset": 0.4624186202461797
+        },
+        "target": {
+          "side": "top",
+          "offset": 0.5
+        }
+      }
+    }
+  ],
   "notes": []
 }
