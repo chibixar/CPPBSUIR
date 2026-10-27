@@ -1,0 +1,94 @@
+{
+  "version": 2,
+  "output": "diagram.typ",
+  "autoExport": true,
+  "style": {
+    "styleVersion": 2,
+    "name": "GOST",
+    "font": [
+      "Times New Roman",
+      "Liberation Serif",
+      "serif"
+    ],
+    "fontSize": 13.0,
+    "nameFontSize": 14.0,
+    "stereotypeFontSize": 11.0,
+    "lineHeight": 18.0,
+    "paddingX": 8.0,
+    "paddingY": 4.0,
+    "borderWidth": 1.0,
+    "cornerRadius": 0.0,
+    "nameBold": true,
+    "kindBadge": false,
+    "colors": {
+      "text": "#000000",
+      "border": "#000000",
+      "fill": "#ffffff",
+      "headerFill": "#ffffff",
+      "edge": "#000000",
+      "badge": "#add1b2"
+    },
+    "orthogonalEdges": true,
+    "edgeMergeTargets": true,
+    "edgeEditable": false,
+    "edgeClearance": 12.0,
+    "edgePortSpacing": 20.0,
+    "edgeBendPenalty": 24.0,
+    "edgeSourceSide": "top",
+    "edgeTargetSide": "bottom",
+    "edgeWidth": 1.0,
+    "arrowSize": 12.0,
+    "edgeDashLength": 6.0,
+    "edgeDashGap": 4.0,
+    "interfaceHidesAttributes": true,
+    "showStereotype": true,
+    "templateNotation": "corner",
+    "memberIconStyle": "text",
+    "showMethodParams": true,
+    "showMethodReturnType": true
+  },
+  "positions": {
+    "classBinaryTree": {
+      "x": -455.7123858041625,
+      "y": 272.47139151227907
+    },
+    "classFakultet": {
+      "x": 107.31582678461916,
+      "y": 74.71870897030558
+    },
+    "classStudent": {
+      "x": -29.455332011353875,
+      "y": 454.6447776488994
+    },
+    "structBinaryTree_1_1Node": {
+      "x": -335.2814071436869,
+      "y": 67.5647574980956
+    }
+  },
+  "collapsed": {
+    "classBinaryTree": {
+      "attributes": false,
+      "methods": false
+    },
+    "classFakultet": {
+      "attributes": false,
+      "methods": false
+    },
+    "classStudent": {
+      "attributes": false,
+      "methods": false
+    },
+    "structBinaryTree_1_1Node": {
+      "attributes": false,
+      "methods": false
+    }
+  },
+  "hidden": {
+    "classBinaryTree": false,
+    "classFakultet": false,
+    "classStudent": false,
+    "structBinaryTree_1_1Node": false
+  },
+  "connections": [],
+  "notes": []
+}
