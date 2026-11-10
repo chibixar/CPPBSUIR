@@ -5,14 +5,14 @@
 #include <numeric>
 #include <stdexcept>
 
-// Создание студента с нулевыми оценками
+// Стварэнне студэнта з нулявымі адзнакамі.
 Student::Student(const std::string& faculty, int exams)
     : Fakultet(faculty), full_name(""), birth_year(0), exams_count(0), results(nullptr)
 {
     this->set_results(nullptr, exams);
 }
 
-// Создание студента со всеми данными
+// Стварэнне студэнта з усімі дадзенымі.
 Student::Student(const std::string& faculty, const std::string& name,
                  int year, const int* marks, int exams)
     : Fakultet(faculty), full_name(name), birth_year(year), exams_count(0), results(nullptr)
@@ -20,20 +20,20 @@ Student::Student(const std::string& faculty, const std::string& name,
     this->set_results(marks, exams);
 }
 
-// Конструктор копирования (глубокая копия)
+// Канструктар капіявання (глыбокая копія).
 Student::Student(const Student& other)
     : Fakultet(other), full_name(other.full_name), birth_year(other.birth_year), exams_count(0), results(nullptr)
 {
     this->set_results(other.results, other.exams_count);
 }
 
-// Освобождение массива оценок
+// Вызваленне масіва адзнак.
 Student::~Student()
 {
     delete[] this->results;
 }
 
-// Оператор присваивания
+// Аператар прысвойвання.
 Student& Student::operator=(const Student& other)
 {
     if (this != &other)
@@ -47,61 +47,61 @@ Student& Student::operator=(const Student& other)
     return *this;
 }
 
-// Сравнение по Ф.И.О. (ключ дерева)
+// Параўнанне па Ф.І.Б. (ключ дрэва).
 bool Student::operator<(const Student& other) const
 {
     return this->full_name < other.full_name;
 }
 
-// Получение Ф.И.О.
+// Атрыманне Ф.І.Б.
 const std::string& Student::get_full_name() const
 {
     return this->full_name;
 }
 
-// Получение года рождения
+// Атрыманне года нараджэння.
 int Student::get_birth_year() const
 {
     return this->birth_year;
 }
 
-// Получение количества экзаменов
+// Атрыманне колькасці экзаменаў.
 int Student::get_exams_count() const
 {
     return this->exams_count;
 }
 
-// Получение оценки по индексу
+// Атрыманне адзнакі па індэксе.
 int Student::get_mark(int index) const
 {
     if (index < 0 || index >= this->exams_count)
-        throw std::out_of_range("Нет оценки с таким номером.");
+        throw std::out_of_range("Няма адзнакі з такім нумарам.");
 
     return this->results[index];
 }
 
-// Изменение Ф.И.О.
+// Змяненне Ф.І.Б.
 void Student::set_full_name(const std::string& name)
 {
     this->full_name = name;
 }
 
-// Изменение года рождения
+// Змяненне года нараджэння.
 void Student::set_birth_year(int year)
 {
     this->birth_year = year;
 }
 
-// Изменение оценки по индексу
+// Змяненне адзнакі па індэксе.
 void Student::set_mark(int index, int mark)
 {
     if (index < 0 || index >= this->exams_count)
-        throw std::out_of_range("Нет оценки с таким номером.");
+        throw std::out_of_range("Няма адзнакі з такім нумарам.");
 
     this->results[index] = mark;
 }
 
-// Замена всех оценок (marks == nullptr даёт нулевые оценки)
+// Замена ўсіх адзнак (marks == nullptr дае нулявыя адзнакі).
 void Student::set_results(const int* marks, int exams)
 {
     int* new_results = new int[exams]{};
@@ -113,7 +113,7 @@ void Student::set_results(const int* marks, int exams)
     this->exams_count = exams;
 }
 
-// Вычисление среднего балла
+// Вылічэнне сярэдняга бала.
 double Student::average() const
 {
     if (this->exams_count == 0)
@@ -124,7 +124,7 @@ double Student::average() const
     return static_cast<double>(sum) / this->exams_count;
 }
 
-// Ввод данных студента
+// Увод дадзеных студэнта.
 void Student::input()
 {
     std::cout << "Enter full name: ";
@@ -140,7 +140,7 @@ void Student::input()
     }
 }
 
-// Вывод данных студента
+// Вывад дадзеных студэнта.
 void Student::print() const
 {
     Fakultet::print();
@@ -155,7 +155,7 @@ void Student::print() const
     std::cout << "\nAverage mark: " << std::format("{:.2f}", this->average()) << "\n";
 }
 
-// Краткий вывод студента в одну строку
+// Кароткі вывад студэнта ў адзін радок.
 std::ostream& operator<<(std::ostream& stream, const Student& student)
 {
     stream << student.get_full_name() << " (" << student.get_birth_year()

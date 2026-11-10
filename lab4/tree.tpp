@@ -1,25 +1,25 @@
-// Создание пустого дерева
+// Стварэнне пустога дрэва.
 template <typename T>
 BinaryTree<T>::BinaryTree()
     : root(nullptr), count(0)
 {
 }
 
-// Конструктор копирования (глубокая копия)
+// Канструктар капіявання (глыбокая копія).
 template <typename T>
 BinaryTree<T>::BinaryTree(const BinaryTree& other)
     : root(this->copy_node(other.root)), count(other.count)
 {
 }
 
-// Освобождение всех узлов
+// Вызваленне ўсіх вузлоў.
 template <typename T>
 BinaryTree<T>::~BinaryTree()
 {
     this->clear_node(this->root);
 }
 
-// Оператор присваивания (сначала копия, потом удаление старого)
+// Аператар прысвойвання (спачатку копія, потым выдаленне старога).
 template <typename T>
 BinaryTree<T>& BinaryTree<T>::operator=(const BinaryTree& other)
 {
@@ -35,7 +35,7 @@ BinaryTree<T>& BinaryTree<T>::operator=(const BinaryTree& other)
     return *this;
 }
 
-// Рекурсивное глубокое копирование поддерева
+// Рэкурсіўнае глыбокае капіяванне паддрэва.
 template <typename T>
 typename BinaryTree<T>::Node* BinaryTree<T>::copy_node(const Node* node) const
 {
@@ -49,7 +49,7 @@ typename BinaryTree<T>::Node* BinaryTree<T>::copy_node(const Node* node) const
     return copy;
 }
 
-// Удаление поддерева: сначала потомки, потом сам узел
+// Выдаленне паддрэва: спачатку нашчадкі, потым сам вузел.
 template <typename T>
 void BinaryTree<T>::clear_node(Node* node)
 {
@@ -62,7 +62,7 @@ void BinaryTree<T>::clear_node(Node* node)
     delete node;
 }
 
-// Рекурсивная вставка узла
+// Рэкурсіўная ўстаўка вузла.
 template <typename T>
 typename BinaryTree<T>::Node* BinaryTree<T>::insert_node(Node* node, const T& value, bool& added)
 {
@@ -77,11 +77,11 @@ typename BinaryTree<T>::Node* BinaryTree<T>::insert_node(Node* node, const T& va
     else if (node->data < value)
         node->right = this->insert_node(node->right, value, added);
 
-    // Ни меньше, ни больше: элемент уже есть в дереве
+    // Ні менш, ні больш: элемент ужо ёсць у дрэве.
     return node;
 }
 
-// Рекурсивное удаление узла
+// Рэкурсіўнае выдаленне вузла.
 template <typename T>
 typename BinaryTree<T>::Node* BinaryTree<T>::remove_node(Node* node, const T& value, bool& removed)
 {
@@ -102,7 +102,7 @@ typename BinaryTree<T>::Node* BinaryTree<T>::remove_node(Node* node, const T& va
 
     removed = true;
 
-    // Нет левого потомка (включая лист)
+    // Няма левага нашчадка (уключаючы ліст).
     if (!node->left)
     {
         Node* child = node->right;
@@ -111,7 +111,7 @@ typename BinaryTree<T>::Node* BinaryTree<T>::remove_node(Node* node, const T& va
         return child;
     }
 
-    // Есть только левый потомок
+    // Ёсць толькі левы нашчадак.
     if (!node->right)
     {
         Node* child = node->left;
@@ -120,7 +120,7 @@ typename BinaryTree<T>::Node* BinaryTree<T>::remove_node(Node* node, const T& va
         return child;
     }
 
-    // Два потомка: переносим минимум правого поддерева и удаляем его узел
+    // Два нашчадкі: пераносім мінімум правага паддрэва і выдаляем яго вузел.
     Node* min_node = node->right;
     while (min_node->left)
         min_node = min_node->left;
@@ -133,7 +133,7 @@ typename BinaryTree<T>::Node* BinaryTree<T>::remove_node(Node* node, const T& va
     return node;
 }
 
-// Рекурсивный поиск узла
+// Рэкурсіўны пошук вузла.
 template <typename T>
 const typename BinaryTree<T>::Node* BinaryTree<T>::find_node(const Node* node, const T& value) const
 {
@@ -149,7 +149,7 @@ const typename BinaryTree<T>::Node* BinaryTree<T>::find_node(const Node* node, c
     return node;
 }
 
-// Симметричный обход (элементы по возрастанию)
+// Сіметрычны абыход (элементы па павелічэнні).
 template <typename T>
 void BinaryTree<T>::print_in_order(const Node* node) const
 {
@@ -161,7 +161,7 @@ void BinaryTree<T>::print_in_order(const Node* node) const
     this->print_in_order(node->right);
 }
 
-// Вывод дерева боком: отступ показывает глубину узла
+// Вывад дрэва бокам: водступ паказвае глыбіню вузла.
 template <typename T>
 void BinaryTree<T>::print_sideways(const Node* node, int level) const
 {
@@ -178,7 +178,7 @@ void BinaryTree<T>::print_sideways(const Node* node, int level) const
     this->print_sideways(node->left, level + 1);
 }
 
-// Добавление элемента (false, если такой уже есть)
+// Даданне элемента (false, калі такі ўжо ёсць).
 template <typename T>
 bool BinaryTree<T>::add(const T& value)
 {
@@ -191,7 +191,7 @@ bool BinaryTree<T>::add(const T& value)
     return added;
 }
 
-// Удаление элемента (false, если не найден)
+// Выдаленне элемента (false, калі не знойдзены).
 template <typename T>
 bool BinaryTree<T>::remove(const T& value)
 {
@@ -204,7 +204,7 @@ bool BinaryTree<T>::remove(const T& value)
     return removed;
 }
 
-// Поиск элемента (nullptr, если не найден)
+// Пошук элемента (nullptr, калі не знойдзены).
 template <typename T>
 const T* BinaryTree<T>::find(const T& value) const
 {
@@ -213,7 +213,7 @@ const T* BinaryTree<T>::find(const T& value) const
     return node ? &node->data : nullptr;
 }
 
-// Вывод структуры дерева и отсортированного списка
+// Вывад структуры дрэва і адсартаванага спіса.
 template <typename T>
 void BinaryTree<T>::print() const
 {
@@ -230,14 +230,14 @@ void BinaryTree<T>::print() const
     this->print_in_order(this->root);
 }
 
-// Количество элементов
+// Колькасць элементаў.
 template <typename T>
 int BinaryTree<T>::size() const
 {
     return this->count;
 }
 
-// Проверка пустого дерева
+// Праверка пустога дрэва.
 template <typename T>
 bool BinaryTree<T>::is_empty() const
 {

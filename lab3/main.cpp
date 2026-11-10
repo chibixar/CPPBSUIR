@@ -20,14 +20,14 @@ int main()
         std::cout << "Enter number of exams in the last session: ";
         std::cin >> exams;
 
-        // Проверка корректности введённых чисел
+        // Праверка карэктнасці ўведзеных лікаў.
         if (count <= 0 || exams < 0)
         {
             std::cout << "Error: Invalid number of students or exams.\n";
         }
         else
         {
-            // Массив указателей на базовый класс: студентов обрабатываем полиморфно
+            // Масіў указальнікаў на базавы клас: студэнтаў апрацоўваем паліморфна.
             Fakultet** students = new Fakultet*[count];
 
             for (int i = 0; i < count; i++)
@@ -46,7 +46,7 @@ int main()
                 students[i]->print();
             }
 
-            // Проверка конструктора копирования (приведение базового указателя к Student)
+            // Праверка канструктара капіявання (прывядзенне базавага ўказальніка да Student).
             Student copy(*dynamic_cast<Student*>(students[0]));
 
             std::cout << "\nCopy of the first student:\n";

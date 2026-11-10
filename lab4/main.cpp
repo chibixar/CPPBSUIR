@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-// Демонстрация того, что шаблон работает и с другим типом
+// Дэманстрацыя таго, што шаблон працуе і з іншым тыпам.
 void demo_int()
 {
     BinaryTree<int> numbers;
@@ -24,7 +24,7 @@ void demo_int()
     std::cout << "Find 99: " << (numbers.find(99) ? "found" : "not found") << "\n";
 }
 
-// Ключ поиска и удаления: студент с нужным Ф.И.О.
+// Ключ пошуку і выдалення: студэнт з патрэбным Ф.І.Б.
 void read_key(Student& key)
 {
     std::string name;
@@ -50,7 +50,7 @@ int main()
         std::cout << "Enter number of exams in the last session: ";
         std::cin >> exams;
 
-        // Количество экзаменов не может быть отрицательным
+        // Колькасць экзаменаў не можа быць адмоўнай.
         if (exams < 0)
         {
             std::cout << "Error: Invalid number of exams.\n";
@@ -72,7 +72,7 @@ int main()
                 std::cout << "0. Exit\n";
                 std::cout << "Select operation: ";
 
-                // Защита от ввода не-числа
+                // Абарона ад уводу не-ліку.
                 if (!(std::cin >> menu))
                 {
                     std::cin.clear();
@@ -131,7 +131,7 @@ int main()
 
                 case 5:
                 {
-                    // Проверка конструктора копирования
+                    // Праверка канструктара капіявання.
                     BinaryTree<Student> copy(tree);
 
                     std::cout << "Copy of the tree (" << copy.size() << " students):\n";

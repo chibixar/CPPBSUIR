@@ -1,30 +1,30 @@
 #include "fakultet.h"
 #include <iostream>
 
-// Конструктор базового класса
+// Канструктар базавага класа.
 Fakultet::Fakultet(const std::string& name)
     : faculty_name(name)
 {
 }
 
-// Виртуальный деструктор базового класса
+// Віртуальны дэструктар базавага класа.
 Fakultet::~Fakultet()
 {
 }
 
-// Получение названия факультета
+// Атрыманне назвы факультэта.
 const std::string& Fakultet::get_faculty_name() const
 {
     return this->faculty_name;
 }
 
-// Изменение названия факультета
+// Змяненне назвы факультэта.
 void Fakultet::set_faculty_name(const std::string& name)
 {
     this->faculty_name = name;
 }
 
-// Вывод данных факультета
+// Вывад дадзеных факультэта.
 void Fakultet::print() const
 {
     std::cout << "Faculty: " << this->faculty_name << "\n";
