@@ -21,4 +21,5 @@ public:
     void set_faculty_name(const std::string& name);
 
     virtual void print() const;
+    virtual void input() = 0;
 };

@@ -31,6 +31,6 @@ public:
     void set_results(const int* marks, int exams);
 
     double average() const;
-    void input();
+    void input() override;
     void print() const override;
 };

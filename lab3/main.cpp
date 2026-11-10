@@ -27,8 +27,8 @@ int main()
         }
         else
         {
-            // Массив указателей на студентов
-            Student** students = new Student*[count];
+            // Массив указателей на базовый класс: студентов обрабатываем полиморфно
+            Fakultet** students = new Fakultet*[count];
 
             for (int i = 0; i < count; i++)
             {
@@ -46,8 +46,8 @@ int main()
                 students[i]->print();
             }
 
-            // Проверка конструктора копирования
-            Student copy(*students[0]);
+            // Проверка конструктора копирования (приведение базового указателя к Student)
+            Student copy(*dynamic_cast<Student*>(students[0]));
 
             std::cout << "\nCopy of the first student:\n";
             copy.print();
