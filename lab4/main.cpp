@@ -3,15 +3,14 @@
 #include <iostream>
 #include <string>
 
-void demoInt()                                              // Дэманстрацыя таго, што шаблон працуе і з іншым тыпам.
+// Демонстрация того, что шаблон работает и с другим типом
+void demo_int()
 {
     BinaryTree<int> numbers;
     int values[] = {50, 30, 70, 20, 40, 60, 80};
 
-    for (int i = 0; i < 7; i++)
-    {
-        numbers.add(values[i]);
-    }
+    for (int value : values)
+        numbers.add(value);
 
     std::cout << "\nTree<int> after adding 50 30 70 20 40 60 80:\n";
     numbers.print();
@@ -21,18 +20,19 @@ void demoInt()                                              // Дэманстр�
     std::cout << "\nAfter removing 30:\n";
     numbers.print();
 
-    std::cout << "\nFind 40: " << (numbers.find(40) != nullptr ? "found" : "not found") << "\n";
-    std::cout << "Find 99: " << (numbers.find(99) != nullptr ? "found" : "not found") << "\n";
+    std::cout << "\nFind 40: " << (numbers.find(40) ? "found" : "not found") << "\n";
+    std::cout << "Find 99: " << (numbers.find(99) ? "found" : "not found") << "\n";
 }
 
-void readKey(Student& key)                                  // Ключ пошуку і выдалення: студэнт з патрэбным Ф.І.А.
+// Ключ поиска и удаления: студент с нужным Ф.И.О.
+void read_key(Student& key)
 {
     std::string name;
 
     std::cout << "Enter full name: ";
     std::getline(std::cin >> std::ws, name);
 
-    key.setFullName(name);
+    key.set_full_name(name);
 }
 
 int main()
@@ -50,7 +50,8 @@ int main()
         std::cout << "Enter number of exams in the last session: ";
         std::cin >> exams;
 
-        if (exams < 0)                                      // Колькасць экзаменаў не можа быць адмоўнай.
+        // Количество экзаменов не может быть отрицательным
+        if (exams < 0)
         {
             std::cout << "Error: Invalid number of exams.\n";
         }
@@ -71,7 +72,8 @@ int main()
                 std::cout << "0. Exit\n";
                 std::cout << "Select operation: ";
 
-                if (!(std::cin >> menu))                    // Абарона ад ўводу не-ліку.
+                // Защита от ввода не-числа
+                if (!(std::cin >> menu))
                 {
                     std::cin.clear();
                     std::cin.ignore(1000, '\n');
@@ -80,83 +82,73 @@ int main()
 
                 switch (menu)
                 {
-                    case 1:
+                case 1:
+                {
+                    Student student(faculty, exams);
+                    student.input();
+
+                    if (tree.add(student))
+                        std::cout << "Student added.\n";
+                    else
+                        std::cout << "Error: Student with this name already exists.\n";
+
+                    break;
+                }
+
+                case 2:
+                {
+                    Student key(faculty, exams);
+                    read_key(key);
+
+                    if (tree.remove(key))
+                        std::cout << "Student removed.\n";
+                    else
+                        std::cout << "Error: Student not found.\n";
+
+                    break;
+                }
+
+                case 3:
+                    tree.print();
+                    break;
+
+                case 4:
+                {
+                    Student key(faculty, exams);
+                    read_key(key);
+
+                    const Student* found = tree.find(key);
+                    if (found)
                     {
-                        Student student(faculty, exams);
-                        student.input();
-
-                        if (tree.add(student))
-                        {
-                            std::cout << "Student added.\n";
-                        }
-                        else
-                        {
-                            std::cout << "Error: Student with this name already exists.\n";
-                        }
-
-                        break;
+                        std::cout << "Student found:\n";
+                        found->print();
                     }
+                    else
+                        std::cout << "Error: Student not found.\n";
 
-                    case 2:
-                    {
-                        Student key(faculty, exams);
-                        readKey(key);
+                    break;
+                }
 
-                        if (tree.remove(key))
-                        {
-                            std::cout << "Student removed.\n";
-                        }
-                        else
-                        {
-                            std::cout << "Error: Student not found.\n";
-                        }
+                case 5:
+                {
+                    // Проверка конструктора копирования
+                    BinaryTree<Student> copy(tree);
 
-                        break;
-                    }
+                    std::cout << "Copy of the tree (" << copy.size() << " students):\n";
+                    copy.print();
+                    break;
+                }
 
-                    case 3:
-                        tree.print();
-                        break;
+                case 6:
+                    demo_int();
+                    break;
 
-                    case 4:
-                    {
-                        Student key(faculty, exams);
-                        readKey(key);
+                case 0:
+                    std::cout << "Exiting menu...\n";
+                    break;
 
-                        const Student* found = tree.find(key);
-
-                        if (found != nullptr)
-                        {
-                            std::cout << "Student found:\n";
-                            found->print();
-                        }
-                        else
-                        {
-                            std::cout << "Error: Student not found.\n";
-                        }
-
-                        break;
-                    }
-
-                    case 5:
-                    {
-                        BinaryTree<Student> copy(tree);     // Праверка канструктара капіявання.
-
-                        std::cout << "Copy of the tree (" << copy.size() << " students):\n";
-                        copy.print();
-                        break;
-                    }
-
-                    case 6:
-                        demoInt();
-                        break;
-
-                    case 0:
-                        std::cout << "Exiting menu...\n";
-                        break;
-
-                    default:
-                        std::cout << "Invalid choice. Try again.\n";
+                default:
+                    std::cout << "Invalid choice. Try again.\n";
                 }
 
             } while (menu != 0);

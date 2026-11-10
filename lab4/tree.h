@@ -35,28 +35,28 @@ private:
     Node* root;
     int count;
 
-    Node* copyNode(const Node* node) const;                 // Рэкурсіўнае глыбокае капіраванне паддрэва.
-    void clearNode(Node* node);
-    Node* insertNode(Node* node, const T& value, bool& added);
-    Node* removeNode(Node* node, const T& value, bool& removed);
-    const Node* findNode(const Node* node, const T& value) const;
-    void printInOrder(const Node* node) const;
-    void printSideways(const Node* node, int level) const;
+    Node* copy_node(const Node* node) const;
+    void clear_node(Node* node);
+    Node* insert_node(Node* node, const T& value, bool& added);
+    Node* remove_node(Node* node, const T& value, bool& removed);
+    const Node* find_node(const Node* node, const T& value) const;
+    void print_in_order(const Node* node) const;
+    void print_sideways(const Node* node, int level) const;
 
 public:
     BinaryTree();
-    BinaryTree(const BinaryTree& other);                    // Глыбокая копія.
+    BinaryTree(const BinaryTree& other);
     ~BinaryTree();
 
     BinaryTree& operator=(const BinaryTree& other);
 
-    bool add(const T& value);                               // Вяртае false, калі такі элемент ужо ёсць.
+    bool add(const T& value);
     bool remove(const T& value);
-    const T* find(const T& value) const;                    // Вяртае nullptr, калі элемент не знойдзены.
+    const T* find(const T& value) const;
     void print() const;
 
     int size() const;
-    bool isEmpty() const;
+    bool is_empty() const;
 };
 
-#include "tree.tpp"                                         // Рэалізацыя шаблона павінна быць бачна пры інстанцыраванні.
+#include "tree.tpp"
