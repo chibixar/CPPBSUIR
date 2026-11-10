@@ -20,13 +20,15 @@ int main()
         std::cout << "Enter number of exams in the last session: ";
         std::cin >> exams;
 
-        if (count <= 0 || exams < 0)                            // Праверка карэктнасці ўведзеных лікаў.
+        // Проверка корректности введённых чисел
+        if (count <= 0 || exams < 0)
         {
             std::cout << "Error: Invalid number of students or exams.\n";
         }
         else
         {
-            Student** students = new Student*[count];           // Масіў указальнікаў на студэнтаў.
+            // Массив указателей на студентов
+            Student** students = new Student*[count];
 
             for (int i = 0; i < count; i++)
             {
@@ -44,15 +46,14 @@ int main()
                 students[i]->print();
             }
 
-            Student copy(*students[0]);                         // Праверка канструктара капіявання.
+            // Проверка конструктора копирования
+            Student copy(*students[0]);
 
             std::cout << "\nCopy of the first student:\n";
             copy.print();
 
             for (int i = 0; i < count; i++)
-            {
                 delete students[i];
-            }
 
             delete[] students;
         }
